@@ -75,3 +75,4 @@
     animation-delay: 0s;
   }
 }
+\n/* Accessibility: skip the opening animation when requested. */\n.av-skip-intro { position:absolute; z-index:2; right:22px; bottom:22px; border:1px solid #ffffff55; border-radius:30px; background:#111d; color:#fff; padding:9px 15px; font:inherit; font-size:.8rem; font-weight:700; cursor:pointer; }\n.av-skip-intro:hover { background:#e50914; border-color:#e50914; }\n
