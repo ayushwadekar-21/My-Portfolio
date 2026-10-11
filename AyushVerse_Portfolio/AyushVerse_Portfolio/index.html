@@ -811,9 +811,7 @@
 
         <div class="cards">
 
-          <article class="card" tabindex="0" role="button"
-            data-card="student"
-            style="--c1:#56303c;--c2:#171018">
+          <a class="card" href="student.html" aria-label="Explore The Student" style="--c1:#56303c;--c2:#171018">
             <div class="symbol">01</div>
             <div class="cardtext">
               <div class="num">CHAPTER 01</div>
@@ -821,11 +819,9 @@
               <p>Curiosity, learning, and growth.</p>
               <span class="more">Discover more ↗</span>
             </div>
-          </article>
+          </a>
 
-          <article class="card" tabindex="0" role="button"
-            data-card="developer"
-            style="--c1:#173d55;--c2:#080e19">
+          <a class="card" href="developer.html" aria-label="Explore The Developer" style="--c1:#173d55;--c2:#080e19">
             <div class="symbol">&lt;/&gt;</div>
             <div class="cardtext">
               <div class="num">CHAPTER 02</div>
@@ -833,11 +829,9 @@
               <p>Turning ideas into digital experiences.</p>
               <span class="more">Discover more ↗</span>
             </div>
-          </article>
+          </a>
 
-          <article class="card" tabindex="0" role="button"
-            data-card="creative"
-            style="--c1:#6a3e24;--c2:#1a0e0a">
+          <a class="card" href="creative.html" aria-label="Explore The Creative Mind" style="--c1:#6a3e24;--c2:#1a0e0a">
             <div class="symbol">✦</div>
             <div class="cardtext">
               <div class="num">CHAPTER 03</div>
@@ -845,11 +839,9 @@
               <p>Stories, design, and imagination.</p>
               <span class="more">Discover more ↗</span>
             </div>
-          </article>
+          </a>
 
-          <article class="card" tabindex="0" role="button"
-            data-card="scientist"
-            style="--c1:#2d285e;--c2:#0a0a18">
+          <a class="card" href="scientist.html" aria-label="Explore The Future Scientist" style="--c1:#2d285e;--c2:#0a0a18">
             <div class="symbol">⚛</div>
             <div class="cardtext">
               <div class="num">CHAPTER 04</div>
@@ -857,11 +849,9 @@
               <p>AI, robotics, and discovery.</p>
               <span class="more">Discover more ↗</span>
             </div>
-          </article>
+          </a>
 
-          <article class="card" tabindex="0" role="button"
-            data-card="innovator"
-            style="--c1:#185449;--c2:#081311">
+          <a class="card" href="innovator.html" aria-label="Explore The Young Innovator" style="--c1:#185449;--c2:#081311">
             <div class="symbol">∞</div>
             <div class="cardtext">
               <div class="num">CHAPTER 05</div>
@@ -869,7 +859,7 @@
               <p>Experimenting, building, and improving.</p>
               <span class="more">Discover more ↗</span>
             </div>
-          </article>
+          </a>
 
         </div>
       </section>
@@ -1047,140 +1037,13 @@
     </div>
   </footer>
 
-  <!-- PERSPECTIVE DETAILS MODAL -->
-  <div class="modalbg" id="modalbg"
-       role="dialog"
-       aria-modal="true"
-       aria-labelledby="modalTitle">
-
-    <div class="modal">
-      <div class="modalhead">
-        <button class="close" id="close"
-                aria-label="Close dialog">×</button>
-
-        <div class="eyebrow" id="modalEyebrow">CHAPTER</div>
-        <h2 id="modalTitle">Perspective</h2>
-      </div>
-
-      <div class="modalbody">
-        <p id="desc"></p>
-        <p id="extra"></p>
-        <div class="tags" id="tags"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- EXISTING WEBSITE JAVASCRIPT -->
+  <!-- HOMEPAGE INTERACTIONS -->
   <script>
-    const details = {
-      student: {
-        eyebrow: "CHAPTER 01 · CURIOSITY",
-        title: "The Student",
-        desc: "I believe learning is more than remembering facts. Every new concept is a chance to ask questions, discover possibilities, and build understanding.",
-        extra: "I want to keep developing my knowledge, strengthen my problem-solving skills, and stay open to ideas from different subjects.",
-        tags: ["Learning", "Curiosity", "Growth", "Problem-solving"]
-      },
-
-      developer: {
-        eyebrow: "CHAPTER 02 · DIGITAL BUILDING",
-        title: "The Developer",
-        desc: "I am learning to turn ideas into digital experiences through programming, website development, and app creation.",
-        extra: "My goal is to build useful, beautiful, and functional technology. I treat each project as a chance to practice, experiment, and improve.",
-        tags: ["Coding", "Web development", "App development", "Technology"]
-      },
-
-      creative: {
-        eyebrow: "CHAPTER 03 · IMAGINATION",
-        title: "The Creative Mind",
-        desc: "I enjoy storytelling, drawing, calligraphy, design, and turning ordinary ideas into something special.",
-        extra: "Creativity helps me look at a challenge from different angles and imagine possibilities that may not be obvious at first.",
-        tags: ["Storytelling", "Drawing", "Calligraphy", "Design"]
-      },
-
-      scientist: {
-        eyebrow: "CHAPTER 04 · DISCOVERY",
-        title: "The Future Scientist",
-        desc: "I am fascinated by artificial intelligence, robotics, science, and the ways intelligent machines can help people.",
-        extra: "My long-term dream is to become a scientist and robotics engineer. I want to understand how things work and use that knowledge to build meaningful solutions.",
-        tags: ["Artificial intelligence", "Robotics", "Science", "Innovation"]
-      },
-
-      innovator: {
-        eyebrow: "CHAPTER 05 · WHAT COMES NEXT",
-        title: "The Young Innovator",
-        desc: "I want to do more than imagine the future. I want to experiment, learn new skills, create, and gradually turn ambitious ideas into reality.",
-        extra: "For me, innovation begins with curiosity and grows through practice, patience, and the willingness to try again.",
-        tags: ["Vision", "Experimentation", "Building", "Improvement"]
-      }
-    };
-
-    const bg = document.getElementById("modalbg");
-    let previousFocus;
-
-    function openCard(key) {
-      const d = details[key];
-      if (!d) return;
-
-      previousFocus = document.activeElement;
-
-      document.getElementById("modalEyebrow").textContent = d.eyebrow;
-      document.getElementById("modalTitle").textContent = d.title;
-      document.getElementById("desc").textContent = d.desc;
-      document.getElementById("extra").textContent = d.extra;
-
-      const tags = document.getElementById("tags");
-
-      tags.replaceChildren(
-        ...d.tags.map(t => {
-          const s = document.createElement("span");
-          s.textContent = t;
-          return s;
-        })
-      );
-
-      bg.classList.add("open");
-      document.body.style.overflow = "hidden";
-      document.getElementById("close").focus();
-    }
-
-    function closeModal() {
-      bg.classList.remove("open");
-      document.body.style.overflow = "";
-
-      if (previousFocus) previousFocus.focus();
-    }
-
-    document.querySelectorAll("[data-card]").forEach(card => {
-      card.addEventListener("click", () => {
-        openCard(card.dataset.card);
-      });
-
-      card.addEventListener("keydown", event => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          openCard(card.dataset.card);
-        }
-      });
-    });
-
-    document.getElementById("close").addEventListener("click", closeModal);
-
-    bg.addEventListener("click", event => {
-      if (event.target === bg) closeModal();
-    });
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && bg.classList.contains("open")) {
-        closeModal();
-      }
-    });
-
     const menu = document.getElementById("menu");
     const links = document.getElementById("links");
 
     menu.addEventListener("click", () => {
       const open = links.classList.toggle("open");
-
       menu.setAttribute("aria-expanded", String(open));
       menu.textContent = open ? "×" : "☰";
     });
@@ -1193,8 +1056,7 @@
       });
     });
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
     const reveal = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -1205,18 +1067,13 @@
       });
     }, { threshold: 0.12 });
 
-    document.querySelectorAll(".reveal").forEach(element => {
-      reveal.observe(element);
-    });
+    document.querySelectorAll(".reveal").forEach(element => reveal.observe(element));
 
     const navObs = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           document.querySelectorAll(".links a").forEach(link => {
-            link.classList.toggle(
-              "active",
-              link.getAttribute("href") === "#" + entry.target.id
-            );
+            link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
           });
         }
       });
