@@ -17,7 +17,8 @@
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(node => {
       if (node.parentElement && !node.parentElement.closest("script, style, textarea, pre, code")) {
-        if (node.nodeValue.includes("\\\\n")) node.nodeValue = node.nodeValue.replace(/\\\\n/g, " ");
+        const marker = String.fromCharCode(92) + "n";
+        if (node.nodeValue.includes(marker)) node.nodeValue = node.nodeValue.split(marker).join(" ");
       }
     });
   };
