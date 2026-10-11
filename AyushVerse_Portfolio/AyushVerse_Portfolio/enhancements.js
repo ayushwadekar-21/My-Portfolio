@@ -8,6 +8,23 @@
     set(key, value) { try { sessionStorage.setItem(key, value); } catch (_) {} }
   };
 
+
+  // Repair escaped newline artifacts if an older/generated fragment injects them into the page.
+  // This intentionally targets text nodes only; it never edits script or style source.
+  const cleanEscapedNewlines = () => {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      if (node.parentElement && !node.parentElement.closest("script, style, textarea, pre, code")) {
+        if (node.nodeValue.includes("\\\\n")) node.nodeValue = node.nodeValue.replace(/\\\\n/g, " ");
+      }
+    });
+  };
+  cleanEscapedNewlines();
+  const escapedNewlineObserver = new MutationObserver(cleanEscapedNewlines);
+  escapedNewlineObserver.observe(document.body, { childList: true, subtree: true, characterData: true });
+
   const intro = $("#intro-screen");
   if (intro) {
     const alreadySeen = safeSession.get("ayushverse-intro-seen") === "1";
