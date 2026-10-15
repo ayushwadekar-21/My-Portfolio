@@ -9,17 +9,18 @@
   };
 
 
-  // Repair escaped newline artifacts if an older/generated fragment injects them into the page.
-  // This intentionally targets text nodes only; it never edits script or style source.
+  // Remove one or more literal backslash-n sequences from rendered text nodes.
+  // Repeat so doubly escaped content is cleaned completely.
   const cleanEscapedNewlines = () => {
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     const nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(node => {
-      if (node.parentElement && !node.parentElement.closest("script, style, textarea, pre, code")) {
-        const marker = String.fromCharCode(92) + "n";
-        if (node.nodeValue.includes(marker)) node.nodeValue = node.nodeValue.split(marker).join(" ");
-      }
+      if (!node.parentElement || node.parentElement.closest("script, style, textarea, pre, code")) return;
+      const marker = String.fromCharCode(92) + "n";
+      let value = node.nodeValue;
+      while (value.includes(marker)) value = value.split(marker).join(" ");
+      if (value !== node.nodeValue) node.nodeValue = value;
     });
   };
   cleanEscapedNewlines();
