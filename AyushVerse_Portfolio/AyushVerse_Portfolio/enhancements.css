@@ -64,3 +64,6 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline:2px so
 .av-status { display:block; }
 .av-status strong { display:block !important; margin-bottom:8px; }
 .av-status span { display:inline-flex !important; margin-top:2px; }
+
+/* Fail open: never leave portfolio content invisible if scroll observers fail. */
+.av-reveal { opacity:1 !important; transform:none !important; }
